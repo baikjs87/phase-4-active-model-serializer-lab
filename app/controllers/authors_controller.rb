@@ -7,7 +7,7 @@ class AuthorsController < ApplicationController
   end
 
   def show
-    author = Author.find(params[:id])
+    author = find_author
     render json: author
   end
 
@@ -15,6 +15,10 @@ class AuthorsController < ApplicationController
 
   def render_not_found_response
     render json: { error: "Author not found" }, status: :not_found
+  end
+
+  def find_author
+    Author.find(params[:id])
   end
 
 end
